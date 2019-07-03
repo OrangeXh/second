@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8" />
+    <title>登陆系统</title>
+</head>
+<body>
+
+<form action="/successForAll" method="post">
+    <div sec:authorize="hasRole('ROLE_ADMIN')">
+    <h1 >管理员！<span sec:authentication="name"></span>你好！   :)</h1>
+    <h3>欢迎您 : <span th:text="${name}"></span></h3>
+    <p>
+        如果你看到这个页面，代表这是管理员才能看到的内容，权限认证成功了！
+    </p>
+    </div>
+
+    <div sec:authorize="hasRole('ROLE_USER')">
+        <h1>用户！你好！   :)</h1>
+        <h3>欢迎您 : <span th:text="${username}"></span></h3>
+        <p>
+            如果你看到这个页面，代表这是用户能看到的内容，权限认证成功了！
+        </p>
+    </div>
+
+</form>
+
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="注销"/>
+</form>
+
+</body>
+</html>

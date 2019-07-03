@@ -1,0 +1,36 @@
+server:
+  port: 8081
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/data?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    platform: org.hibernate.dialect.MySQL5Dialect
+    username: root
+    password: 123
+    thymeleaf:
+
+  main:
+    allow-bean-definition-overriding: true
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  mvc:
+    static-path-pattern: /**
+  resources:
+#    在这里表示配置静态资源根路径
+    static-locations: classpath:/static/
+  thymeleaf:
+    cache: false
+
+#    这里作为前缀，表示被thymeleaf修饰的页面的根目录
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML
+    encoding: UTF-8
+# 关闭默认的basic认证
+  security:
+    basic:
+      enabled: false
+
+
